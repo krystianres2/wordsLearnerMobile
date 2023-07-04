@@ -14,17 +14,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.wordslearner.ui.navigation.WordsNavHost
 import com.example.wordslearner.R.string
 
-/**
- * Top level composable that represents screens for the application.
- */
+//funkcja wywoływana w Main
 @Composable
 fun WordsApp(navController: NavHostController = rememberNavController()) {
     WordsNavHost(navController = navController)
 }
 
-/**
- * App bar to display title and conditionally display the back navigation.
- */
+
 @Composable
 fun WordsTopAppBar(
     title: String,

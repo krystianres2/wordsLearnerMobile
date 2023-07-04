@@ -27,9 +27,7 @@ object HomeDestination : NavigationDestination {
     override val titleRes = R.string.app_name
 }
 
-/**
- * Entry route for Home screen
- */
+
 @Composable
 fun HomeScreen(
     navigateToWordEntry: () -> Unit,
@@ -154,7 +152,7 @@ private fun WordsWord(
         .fillMaxWidth()
         .clickable { onItemClick(word) }
         .padding(vertical = 8.dp)
-//        .background(color = Color.Cyan)
+
     ) {
         Text(
             text = word.wordPl,

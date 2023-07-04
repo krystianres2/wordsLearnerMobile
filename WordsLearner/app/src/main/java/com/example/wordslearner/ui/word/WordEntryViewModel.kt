@@ -7,29 +7,20 @@ import androidx.lifecycle.ViewModel
 import com.example.wordslearner.data.Word
 import com.example.wordslearner.data.WordsRepository
 
-/**
- * View Model to validate and insert items in the Room database.
- */
+
 class WordEntryViewModel(private val wordsRepository: WordsRepository) : ViewModel() {
 
-    /**
-     * Holds current item ui state
-     */
+
     var wordUiState by mutableStateOf(WordUiState())
         private set
 
-    /**
-     * Updates the [wordUiState] with the value provided in the argument. This method also triggers
-     * a validation for input values.
-     */
+
     fun updateUiState(wordDetails: WordDetails) {
         wordUiState =
             WordUiState(wordDetails = wordDetails, isEntryValid = validateInput(wordDetails))
     }
 
-    /**
-     * Inserts an [Word] in the Room database
-     */
+    //dodawnie zeedytyowanego obiektu do bazy
     suspend fun saveWord() {
         if (validateInput()) {
             wordsRepository.insertWord(wordUiState.wordDetails.toWord())
@@ -43,9 +34,7 @@ class WordEntryViewModel(private val wordsRepository: WordsRepository) : ViewMod
     }
 }
 
-/**
- * Represents Ui State for an Item.
- */
+
 data class WordUiState(
     val wordDetails: WordDetails = WordDetails(),
     val isEntryValid: Boolean = false
@@ -57,28 +46,20 @@ data class WordDetails(
     val wordEng: String = ""
 )
 
-/**
- * Extension function to convert [ItemUiState] to [Item]. If the value of [ItemUiState.price] is
- * not a valid [Double], then the price will be set to 0.0. Similarly if the value of
- * [ItemUiState] is not a valid [Int], then the quantity will be set to 0
- */
+//konwersja z UiState na Entity
 fun WordDetails.toWord(): Word = Word(
     id = id,
     wordPl = wordPl,
     wordEng = wordEng
 )
 
-/**
- * Extension function to convert [Item] to [ItemUiState]
- */
+//konwersja obiektu typu Entity na typ UiState
 fun Word.toWordUiState(isEntryValid: Boolean = false): WordUiState = WordUiState(
     wordDetails = this.toWordDetails(),
     isEntryValid = isEntryValid
 )
 
-/**
- * Extension function to convert [Item] to [ItemDetails]
- */
+//konwersja obiektu entity na obiekt wordDetails
 fun Word.toWordDetails(): WordDetails = WordDetails(
     id = id,
     wordPl = wordPl,
