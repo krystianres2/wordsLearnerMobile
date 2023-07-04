@@ -11,10 +11,7 @@ private val wordsRepository: WordsRepository,) :ViewModel(){
 
     private val wordId: Int = checkNotNull(savedStateHandle[WordDetailsDestination.wordIdArg])
 
-    /**
-     * Holds the item details ui state. The data is retrieved from [WordsRepository] and mapped to
-     * the UI state.
-     */
+
     val uiState: StateFlow<WordDetailsUiState> =
         wordsRepository.getWordStream(wordId)
             .filterNotNull()
@@ -26,9 +23,7 @@ private val wordsRepository: WordsRepository,) :ViewModel(){
                 initialValue = WordDetailsUiState()
             )
 
-    /**
-     * Deletes the item from the [WordsRepository]'s data source.
-     */
+
     suspend fun deleteWord() {
         wordsRepository.deleteWord(uiState.value.wordDetails.toWord())
     }
@@ -38,9 +33,7 @@ private val wordsRepository: WordsRepository,) :ViewModel(){
     }
 
 }
-/**
- * UI state for ItemDetailsScreen
- */
+
 data class WordDetailsUiState(
     val wordDetails: WordDetails = WordDetails()
 )

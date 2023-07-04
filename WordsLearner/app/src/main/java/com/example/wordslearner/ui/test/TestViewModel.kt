@@ -25,10 +25,7 @@ class TestViewModel(wordsRepository: WordsRepository):ViewModel() {
     private var usedWords: MutableList<Word> = mutableListOf()
     private lateinit var currentWord: String
     private lateinit var correctAnswer: String
-    //    private val itemsList: StateFlow<TestItems> = itemsRepository.getAllItemsStream().map { TestItems(it) }.stateIn(scope = viewModelScope, started = SharingStarted.WhileSubscribed(
-//      TIMEOUT_MILLIS), initialValue = TestItems()
-//    )
-//    private var itemsList: List<Item> = testUiState.value.itemList
+
     init {
 
         try {
@@ -41,7 +38,7 @@ class TestViewModel(wordsRepository: WordsRepository):ViewModel() {
 
     private val wordsList: List<Word>
         get() = testUiState.value.wordList
-//val itemsListList: MutableList<Item> = mutableListOf()
+
 
     val listSize: Int
         get() = wordsList.size

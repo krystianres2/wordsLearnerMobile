@@ -32,7 +32,7 @@ fun WordEntryScreen(
     onNavigateUp: () -> Unit,
     modifier: Modifier = Modifier,
     canNavigateBack: Boolean = true,
-    viewModel: WordEntryViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    viewModel: WordEntryViewModel = viewModel(factory = AppViewModelProvider.Factory)//tworzy instancję przy pomocy Factory
 ) {
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
@@ -48,11 +48,7 @@ fun WordEntryScreen(
             itemUiState = viewModel.wordUiState,
             onItemValueChange = viewModel::updateUiState,
             onSaveClick = {
-                // Note: If the user rotates the screen very fast, the operation may get cancelled
-                // and the item may not be saved in the Database. This is because when config
-                // change occurs, the Activity will be recreated and the rememberCoroutineScope will
-                // be cancelled - since the scope is bound to composition.
-                coroutineScope.launch {
+                coroutineScope.launch {//operacje na bazie danych powinny być wewnątrz coroutineScope
                     viewModel.saveWord()
                     navigateBack()
                 }

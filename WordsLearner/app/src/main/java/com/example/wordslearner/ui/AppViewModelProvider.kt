@@ -13,12 +13,13 @@ import com.example.wordslearner.ui.word.WordDetailsViewModel
 import com.example.wordslearner.ui.word.WordEditViewModel
 import com.example.wordslearner.ui.word.WordEntryViewModel
 
+//inicjalizacja ViewModeli/tworzenie ich instancji
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
             WordEditViewModel(
-                this.createSavedStateHandle(),
-                wordsApplication().container.wordsRepository
+                this.createSavedStateHandle(),// umożliwia przechowywanie i przywracanie danych pomimo zmian w cyklu
+                wordsApplication().container.wordsRepository// dostarcza repozytorium do ViewModeli
             )
         }
 

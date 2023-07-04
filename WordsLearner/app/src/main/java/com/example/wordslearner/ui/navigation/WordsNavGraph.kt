@@ -13,9 +13,7 @@ import com.example.wordslearner.ui.test.TestDestination
 import com.example.wordslearner.ui.test.TestScreen
 import com.example.wordslearner.ui.word.*
 
-/**
- * Provides Navigation graph for the application.
- */
+//Nawigacja
 @Composable
 fun WordsNavHost(
     navController: NavHostController,
@@ -45,7 +43,7 @@ fun WordsNavHost(
         composable(
             route = WordDetailsDestination.routeWithArgs,
             arguments = listOf(navArgument(WordDetailsDestination.wordIdArg) {
-                type = NavType.IntType
+                type = NavType.IntType//ID obiektu typu integer
             })
         ) {
             WordDetailsScreen(

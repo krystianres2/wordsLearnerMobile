@@ -44,7 +44,7 @@ fun TestScreen(navigateToHome: () -> Unit, modifier: Modifier = Modifier, testVi
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-//        Text(text = homeUiState.itemList.toString())
+
             TestStatus(wordCount = if (testViewModel.pom==0){testUiState.currentWordCount-1}else{testUiState.currentWordCount}, maxWords = testViewModel.listSize)
             TestLayout(
                 currentWord = if(testUiState.currentWord == ""){
@@ -105,9 +105,7 @@ private fun FinalScoreDialog(score: Int, onPlayAgain: () -> Unit, navigateToHome
 
     AlertDialog(
         onDismissRequest = {
-            // Dismiss the dialog when the user clicks outside the dialog or on the back
-            // button. If you want to disable that functionality, simply use an empty
-            // onCloseRequest.
+
         },
         title = { Text(stringResource(id = R.string.gratulacje)) },
         text = { Text(stringResource(id = R.string.score_info, score)) },

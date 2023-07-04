@@ -15,9 +15,7 @@ class WordEditViewModel(savedStateHandle: SavedStateHandle,
 private val wordsRepository: WordsRepository
 ):ViewModel() {
 
-    /**
-     * Holds current item ui state
-     */
+
     var wordUiState by mutableStateOf(WordUiState())
         private set
 
@@ -32,19 +30,14 @@ private val wordsRepository: WordsRepository
         }
     }
 
-    /**
-     * Update the item in the [WordsRepository]'s data source
-     */
+
     suspend fun updateItem() {
         if (validateInput(wordUiState.wordDetails)) {
             wordsRepository.updateWord(wordUiState.wordDetails.toWord())
         }
     }
 
-    /**
-     * Updates the [wordUiState] with the value provided in the argument. This method also triggers
-     * a validation for input values.
-     */
+
     fun updateUiState(wordDetails: WordDetails) {
         wordUiState =
             WordUiState(wordDetails = wordDetails, isEntryValid = validateInput(wordDetails))

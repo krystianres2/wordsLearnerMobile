@@ -59,10 +59,7 @@ fun WordDetailsScreen(
         WordDetailsBody(
             wordDetailsUiState = uiState.value,
             onDelete = {
-                // Note: If the user rotates the screen very fast, the operation may get cancelled
-                // and the item may not be deleted from the Database. This is because when config
-                // change occurs, the Activity will be recreated and the rememberCoroutineScope will
-                // be cancelled - since the scope is bound to composition.
+
                 coroutineScope.launch {
                     viewModel.deleteWord()
                     navigateBack()
